@@ -1,0 +1,45 @@
+<mat-card class="p-5 w-full">
+
+  <mat-card-title>Carte</mat-card-title>
+
+  <mat-card-content>
+    <ul *ngFor="let card of cards" class="mb-5">
+      <li class="flex flex-row place-content-between">
+
+        <div class="flex flex-row place-items-center">
+          <mat-icon class="mr-4">credit_card</mat-icon>
+
+          <div class="flex flex-col">
+            <label>{{card.number}}</label>
+            <label>€{{card.amount}} - {{card.type}}</label>
+          </div>
+        </div>
+
+        <div class="flex flex-row place-items-center">
+          <button mat-icon-button
+                  matTooltip="Vedi movimenti"
+                  (click)="movimenti.emit(card.number)"
+          >
+            <mat-icon>receipt_long</mat-icon>
+          </button>
+
+          <button mat-icon-button
+                  matTooltip="Rimuovi"
+                  (click)="rimuovi.emit(card._id)"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+
+      </li>
+    </ul>
+  </mat-card-content>
+
+  <mat-card-actions>
+    <button mat-stroked-button color="primary"
+            class="w-full"
+            (click)="aggiungi.emit()"
+    >Aggiungi</button>
+  </mat-card-actions>
+
+</mat-card>

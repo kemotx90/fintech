@@ -1,0 +1,21 @@
+<div class="m-4">
+
+  <ng-container *ngIf="!nuovoContatto$.getValue()">
+    <dc-contact-list
+      [contacts]="contacts$ | async"
+      (rimuovi)="removeContact($event)"
+      (modifica)="editContact($event)"
+      (selezionato)="selectContact($event)"
+    ></dc-contact-list>
+    <button mat-raised-button color="primary" class="w-full" (click)="newContact()">Nuovo contatto</button>
+  </ng-container>
+
+  <ng-container *ngIf="nuovoContatto$.getValue()">
+    <button mat-stroked-button class="w-full font-semibold" (click)="back()">Indietro</button>
+    <dc-contact-form
+      [initialContact]="manipulatedContact$ | async"
+      (saveContact)="saveContact($event)"
+    ></dc-contact-form>
+  </ng-container>
+
+</div>

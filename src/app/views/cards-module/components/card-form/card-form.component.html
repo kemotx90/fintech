@@ -1,0 +1,57 @@
+<mat-card class="flex p-5 w-full">
+
+  <mat-card-title>Aggiungi carta</mat-card-title>
+
+  <mat-card-content>
+    <form class="flex flex-col" [formGroup]="cardForm" (ngSubmit)="aggiungi()">
+
+      <mat-form-field appearance="fill">
+        <mat-label>Tipo di carta</mat-label>
+        <mat-select formControlName="type">
+          <mat-option *ngFor="let tipo of optionTipoCarta" [value]="tipo">{{tipo | pascalCase}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="flex place-content-between">
+        <mat-form-field appearance="fill" class="w-50-1">
+          <mat-label>Nome</mat-label>
+          <input type="text" matInput
+                 formControlName="name"
+          >
+        </mat-form-field>
+
+        <mat-form-field appearance="fill" class="w-50-1">
+          <mat-label>Cognome</mat-label>
+          <input type="text" matInput
+                 formControlName="surname"
+          >
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>N° Carta</mat-label>
+        <input type="text" matInput
+               formControlName="number"
+        >
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Codice di sicurezza</mat-label>
+        <input type="number" matInput
+               formControlName="csc"
+        >
+      </mat-form-field>
+
+      <button
+        mat-raised-button color="primary" class="w-full mt-2" type="submit"
+      >Aggiungi carta</button>
+
+      <button mat-stroked-button type="button"
+              color="warn" class="w-full mt-2"
+              (click)="annulla()"
+      >Annulla</button>
+
+    </form>
+  </mat-card-content>
+
+</mat-card>

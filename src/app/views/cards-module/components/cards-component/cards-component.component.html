@@ -1,0 +1,10 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side" position="end">
+    <dc-card-form (aggiungiCarta)="addCard($event, drawer)" (annullaInserimento)="drawer.toggle()"></dc-card-form>
+  </mat-drawer>
+  <dc-card-list (aggiungi)="drawer.toggle(true)" [cards]="cards$ | async" (rimuovi)="rimuoviCard($event)" (movimenti)="movimenti()"></dc-card-list>
+</mat-drawer-container>
+
+
+
+

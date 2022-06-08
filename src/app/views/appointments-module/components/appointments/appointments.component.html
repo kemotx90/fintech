@@ -1,0 +1,26 @@
+<mat-drawer-container autosize>
+  <mat-drawer #drawer mode="side" position="end">
+
+    <dc-appointment-map
+      [location]="selectedLocation$.asObservable()"
+    ></dc-appointment-map>
+
+    <dc-appointment-date
+      [dayWithSlots]="dayWithSlots$ | async"
+      (selectedDay)="selectedDate($event)"
+    ></dc-appointment-date>
+
+    <dc-appointment-hour
+      [slots]="slotHour$ | async"
+      (selectedSlot)="selectSlot($event)"
+    ></dc-appointment-hour>
+  </mat-drawer>
+
+  <div>
+    <dc-location-list
+      [locations]="locations$ | async"
+      (selectedLocation)="selectedLocation($event, drawer)"
+    ></dc-location-list>
+  </div>
+
+</mat-drawer-container>

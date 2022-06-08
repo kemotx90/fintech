@@ -1,0 +1,52 @@
+<mat-card class="flex p-5 w-full">
+
+  <button mat-stroked-button
+          class="w-full font-semibold"
+          (click)="openListaContatti()"
+  >Lista contatti</button>
+
+  <form class="flex flex-col mt-4" [formGroup]="transferForm" (ngSubmit)="trasferisciDenaro()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput
+             formControlName="name"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input type="text" matInput
+             formControlName="surname"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>IBAN</mat-label>
+      <input type="text" matInput
+             formControlName="iban"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Importo</mat-label>
+      <input type="number" matInput
+             formControlName="importo"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Seleziona una carta</mat-label>
+      <mat-select formControlName="type">
+        <mat-option *ngFor="let card of cards" [value]="card._id">{{ card.number }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button
+      mat-raised-button color="primary" class="w-full mt-2" type="submit"
+      [disabled]="!transferForm.valid"
+    >Trasferisci denaro</button>
+
+  </form>
+
+</mat-card>

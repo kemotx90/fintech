@@ -1,0 +1,35 @@
+<div class="m-4">
+
+  <form class="flex flex-col mt-4" [formGroup]="contactForm" (ngSubmit)="saveContact.emit(contactForm.value)">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Nome</mat-label>
+      <input type="text" matInput
+             formControlName="name"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Cognome</mat-label>
+      <input type="text" matInput
+             formControlName="surname"
+      >
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>IBAN</mat-label>
+      <input type="text" matInput
+             formControlName="iban"
+      >
+    </mat-form-field>
+
+    <button
+      mat-raised-button color="primary"
+      class="w-full mt-2"
+      type="submit"
+      [disabled]="!contactForm.valid"
+    >Salva</button>
+
+  </form>
+
+</div>

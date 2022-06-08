@@ -1,0 +1,14 @@
+<mat-list>
+  <div mat-subheader>Sedi</div>
+
+  <mat-list-item
+    *ngFor="let location of locations"
+    class="hover:bg-sky-400"
+    (click)="selectedLocation.emit(location)"
+  >
+    <mat-icon mat-list-icon>location_city</mat-icon>
+    <div mat-line>{{location.name}}</div>
+    <div mat-line> {{location.address}} </div>
+  </mat-list-item>
+
+</mat-list>

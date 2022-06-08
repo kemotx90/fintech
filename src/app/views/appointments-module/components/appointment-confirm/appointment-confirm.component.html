@@ -1,0 +1,10 @@
+<h1 class="text-center">Confermi l'appuntamento?</h1>
+
+<p>
+  L'appuntamento sar&agrave; fissato per il giorno {{ selectedDayWithSlot?.day }} alle ore {{ selectedDayWithSlot?.slot }}
+</p>
+
+<div class="flex place-content-between">
+  <button mat-button color="warn" (click)="dialogRef.close()">Annulla</button>
+  <button mat-button color="primary" (click)="dialogRef.close(true)" cdkFocusInitial>Conferma</button>
+</div>

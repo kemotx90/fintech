@@ -1,0 +1,40 @@
+<h2 class="text-center">Menu</h2>
+
+<mat-list>
+  <mat-list-item>
+    <mat-icon mat-list-icon>home</mat-icon>
+    <div mat-line>Home</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>credit_card</mat-icon>
+    <div mat-line [routerLink]="['/dashboard/cards']">Carte</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>point_of_sale</mat-icon>
+    <div mat-line [routerLink]="['/dashboard/movements']">Movimenti</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>paid</mat-icon>
+    <div mat-line>Trasferisci</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>event</mat-icon>
+    <div mat-line [routerLink]="['/dashboard/appointments']">Appuntamenti</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>account_balance</mat-icon>
+    <div mat-line>Tasse</div>
+  </mat-list-item>
+
+  <mat-list-item>
+    <mat-icon mat-list-icon>person</mat-icon>
+    <div mat-line>Daniele Carlini</div>
+    <div mat-line>Logout</div>
+  </mat-list-item>
+
+</mat-list>

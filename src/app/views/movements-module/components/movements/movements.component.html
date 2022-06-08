@@ -1,0 +1,26 @@
+<div class="mx-4 mt-4">
+  <form [formGroup]="movementForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Seleziona una carta</mat-label>
+      <mat-select formControlName="carta">
+        <mat-option *ngFor="let card of cards$ | async" [value]="card.number">{{ card.number }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+
+  <div *ngIf="selectedCard$ | async as card">
+    <div class="font-bold text-2xl">Saldo €{{ card.amount }}</div>
+
+    <dc-movement
+      *ngFor="let movement of card.movements | lazyShowMovement: loadElement$.getValue()"
+      [movement]="movement"
+    >
+    </dc-movement>
+
+    <button mat-stroked-button color="primary"
+            class="w-full"
+            (click)="loadOtherElements()"
+    >Carica altro</button>
+  </div>
+
+</div>

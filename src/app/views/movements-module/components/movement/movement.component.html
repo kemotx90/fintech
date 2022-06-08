@@ -1,0 +1,32 @@
+<div class="my-2">
+  <mat-accordion>
+    <mat-expansion-panel (afterExpand)="hideDescriptionPanel$.next(true)" (afterCollapse)="hideDescriptionPanel$.next(false)">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <span class="text-xs">
+            [{{ movement?.timestamp | date: 'dd/MM/yyyy' }}]
+          </span>
+
+          <span
+            [ngClass]="{'text-green-600': isIn$.getValue(), 'text-red-600': !isIn$.getValue()}"
+            class="font-bold mx-2"
+          >
+            €{{ movement?.amount }}
+          </span>
+
+          <span class="font-medium">
+          {{ movement?.title }}
+          </span>
+        </mat-panel-title>
+        <mat-panel-description *ngIf="!hideDescriptionPanel$.getValue()">
+          <span class="truncate w-20">{{ movement?.description }}</span>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <p class="flex flex-row">
+        {{ movement?.description }}
+      </p>
+
+    </mat-expansion-panel>
+  </mat-accordion>
+</div>

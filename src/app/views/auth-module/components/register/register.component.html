@@ -1,0 +1,58 @@
+<form class="flex flex-col" [formGroup]="registrazioneForm" (ngSubmit)="registrati()">
+
+  <mat-form-field appearance="fill">
+    <mat-label>Email</mat-label>
+    <input matInput type="email"
+           formControlName="email"
+           placeholder="your-email@example.com"
+    >
+    <mat-error *ngIf="emailInput.errors">Email valida richiesta</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Nome</mat-label>
+    <input type="text" matInput
+           formControlName="nome"
+           placeholder="your name"
+    >
+    <mat-error *ngIf="nomeInput.errors">Nome obbligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Cognome</mat-label>
+    <input type="text" matInput
+           formControlName="cognome"
+           placeholder="your surname"
+    >
+    <mat-error *ngIf="cognomeInput.errors">Cognome obbligatorio</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Password</mat-label>
+    <input matInput [type]="showPassword$.getValue() ? 'text' : 'password'"
+           formControlName="password"
+           placeholder="your password"
+    >
+    <button type="button" matSuffix mat-icon-button (click)="showPassword$.next(!showPassword$.getValue())">
+      <mat-icon>{{showPassword$.getValue() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="passwordInput.errors">Password obbligatoria richiesta con min 8 caratteri e max 20 caratteri</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill">
+    <mat-label>Ripeti Password</mat-label>
+    <input matInput [type]="showPasswordConfirmation$.getValue() ? 'text' : 'password'"
+           formControlName="passwordConfirmation"
+           placeholder="password confirmation"
+    >
+    <button type="button" matSuffix mat-icon-button (click)="showPasswordConfirmation$.next(!showPasswordConfirmation$.getValue())">
+      <mat-icon>{{showPasswordConfirmation$.getValue() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="passwordConfirmationInput.errors">Password non combaciante</mat-error>
+  </mat-form-field>
+
+  <button mat-raised-button color="primary" class="w-full mt-2">Registrati</button>
+
+</form>
+
+<p (click)="goToSignIn.emit()" class="cursor-pointer text-sky-400 underline">Hai gi&agrave; un account? Accedi</p>

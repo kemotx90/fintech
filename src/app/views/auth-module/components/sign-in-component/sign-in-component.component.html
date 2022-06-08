@@ -1,0 +1,46 @@
+<div class=" flex p-4 place-content-center">
+  <form class="flex flex-col w-1/2" [formGroup]="signInForm" (ngSubmit)="accedi()">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Email</mat-label>
+      <mat-icon matPrefix>mail</mat-icon>
+      <input #emailText matInput type="email"
+             formControlName="email"
+             placeholder="your-email@example.com"
+      >
+      <button *ngIf="emailText.value.length > 0"
+              matSuffix mat-icon-button aria-label="Clear" type="button"
+              (click)="emailText.value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <mat-icon matPrefix>lock</mat-icon>
+
+      <input
+        #passwordText
+        [type]="showPassword$.getValue() ? 'text' : 'password'" matInput name="password"
+        formControlName="password"
+        placeholder="your password"
+      >
+      <button type="button" matSuffix mat-icon-button (click)="showPassword$.next(!showPassword$.getValue())">
+        <mat-icon>{{showPassword$.getValue() ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+
+      <mat-progress-bar
+        *ngIf="passwordText.value"
+        mode="determinate"
+        [value]="passwordText.value.length | strengthPassword"
+        [color]="progressbarColor.getValue()"
+      >
+      </mat-progress-bar>
+
+      <mat-hint align="end">{{passwordText.value.length}} / 20</mat-hint>
+    </mat-form-field>
+
+    <button mat-raised-button type="submit" color="primary" class="w-full mt-2">Accedi</button>
+    <p (click)="goToRegister.emit()" class="cursor-pointer text-sky-400 underline">Crea un nuovo account</p>
+  </form>
+</div>

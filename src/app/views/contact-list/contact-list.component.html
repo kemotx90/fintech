@@ -1,0 +1,40 @@
+<div class="m-4">
+
+  <form [formGroup]="contactForm">
+    <mat-form-field appearance="outline" class="w-full mb-2">
+      <mat-label>Cerca</mat-label>
+      <input type="text" matInput formControlName="cerca">
+      <button *ngIf="filtro$ | async" matSuffix mat-icon-button aria-label="Clear" (click)="cleanRicerca()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+
+  <p>Contatti</p>
+
+  <mat-list>
+    <mat-list-item *ngFor="let contact of contacts | filtraContact: filtro$.getValue()">
+      <mat-icon mat-list-icon>account_circle_full</mat-icon>
+      <div mat-line>{{ contact.name }} {{ contact.surname }}</div>
+      <div mat-line> {{ contact.iban }} </div>
+
+      <ng-container *ngIf="contact._id">
+
+        <button mat-icon-button (click)="selezionato.emit(contact._id)">
+          <mat-icon>done</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="modifica.next(contact._id)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button (click)="rimuovi.emit(contact._id)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </ng-container>
+
+    </mat-list-item>
+  </mat-list>
+
+</div>

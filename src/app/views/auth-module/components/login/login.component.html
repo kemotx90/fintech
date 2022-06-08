@@ -1,0 +1,8 @@
+<mat-card class="p-5 w-full">
+
+  <mat-card-content>
+    <dc-sign-in-component *ngIf="!registrati$.getValue()" (goToRegister)="registrati$.next(true)"></dc-sign-in-component>
+    <dc-register *ngIf="registrati$.getValue()" (goToSignIn)="registrati$.next(false)"></dc-register>
+  </mat-card-content>
+
+</mat-card>
